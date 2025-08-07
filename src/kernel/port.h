@@ -35,7 +35,7 @@ class port16bit : public port
         port16bit(uint16_t portnumber);
         ~port16bit();
         virtual void write(uint16_t data);
-        virtual int16_t read();
+        virtual uint16_t read();
 };
 
 class port32bit : public port

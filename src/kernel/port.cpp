@@ -11,7 +11,7 @@ port::~port()
 {
 }
 
-port8bit::port8bit(uint16_t portnumber)
+port8bit::port8bit(uint8_t portnumber)
    : port(portnumber)
 {
 }
@@ -28,7 +28,7 @@ uint8_t port8bit::read()
     return result;
 }
 
-port8bit_slow::port8bit_slow(uint16_t portnumber)
+port8bit_slow::port8bit_slow(uint8_t portnumber)
    : port(portnumber)
 {
 }
@@ -72,7 +72,7 @@ uint16_t port16bit::read()
 }
 
 
-port32bit::port32bit(uint16_t portnumber)
+port32bit::port32bit(uint32_t portnumber)
    : port(portnumber)
 {
 }
