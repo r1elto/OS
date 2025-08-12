@@ -22,7 +22,7 @@ extern "C" void call_constructors()
 
 extern "C" void kernelMain(void* multiboot_structure, uint32_t magicnumber)
 {
-
+    printf("Hello World!");
     global_descriptor_table gdt;
 
     for (;;);
