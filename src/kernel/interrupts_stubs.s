@@ -1,21 +1,27 @@
+.set IRQ_BASE, 0x20
+
 .section .text
 
 .extern _ZN17interrupt_manager17handler_interruptEhj
+.global _ZN17interrupt_manager24ignore_interrupt_requestEv
 
-.macro handler_interrupt_request num
-.global _ZN17interrupt_manager18handler_interruptRequest\num\()Ev
+
+.macro handle_exception num
+.global _ZN17interrupt_manager18handle_exception\num\()Ev
+_ZN17interrupt_manager18handle_exception\num\()Ev:
   movb $\num, (interruptnumber)
   jmp int_bottom
 .endm
 
-.macro handler_interrupt_request num
-.global _ZN17interrupt_manager26handler_interruptRequest\num\()Ev
+.macro handle_interrupt_request num
+.global _ZN17interrupt_manager26handler_interrupt_request\num\()Ev
+_ZN17interrupt_manager26handler_interrupt_request\num\()Ev:
   movb $\num + IRQ_BASE, (interruptnumber)
   jmp int_bottom
 .endm
 
-handler_interrupt_request 0x00
-handler_interrupt_request 0x01
+handle_interrupt_request 0x00
+handle_interrupt_request 0x01
 
 int_bottom:
   pusha
@@ -34,6 +40,8 @@ int_bottom:
   popl %es
   popl %ds
   popa
+
+_ZN17interrupt_manager24ignore_interrupt_requestEv:
 
   iret
 

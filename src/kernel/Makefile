@@ -35,7 +35,7 @@ mykernel.iso: mykernel.bin
 	  rm -rf iso
 
 run: mykernel.bin
-	qemu-system-i386 -kernel mykernel.bin
+	qemu-system-i386  -kernel mykernel.bin
 
 .PHONY: clean
 clean: 

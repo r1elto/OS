@@ -1,5 +1,6 @@
 #include "types.h"
 #include "gdt.h"
+#include "interrupts.h"
 
 typedef void (*constructor)();
 
@@ -53,6 +54,9 @@ extern "C" void kernelMain(void* multiboot_structure, uint32_t magicnumber)
     printf("Hello World!\n");
     printf("I am not Arch btw\n");
     global_descriptor_table gdt;
+    interrupt_manager interrupts(&gdt);
+
+    interrupts.activate();
 
     for (;;);
 }
