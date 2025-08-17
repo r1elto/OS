@@ -6,7 +6,7 @@ LD = $(CROSS)/i386-elf-ld
 GCCPARAMS = -m32 -fno-use-cxa-atexit -nostdlib -fno-builtin -fno-rtti -fno-exceptions -fno-leading-underscore
 ASPARAMS = --32
 
-objects = loader.o gdt.o interrupts_stubs.o interrupts.o port.o kernel.o
+objects = loader.o gdt.o interrupts_stubs.o interrupts.o port.o keyboard.o kernel.o
 
 all : run
 
@@ -35,7 +35,7 @@ mykernel.iso: mykernel.bin
 	  rm -rf iso
 
 run: mykernel.bin
-	qemu-system-i386  -kernel mykernel.bin
+	qemu-system-i386 -kernel mykernel.bin
 
 .PHONY: clean
 clean: 

@@ -24,6 +24,12 @@ handle_interrupt_request 0x00
 handle_interrupt_request 0x01
 
 int_bottom:
+  mov $0x10, %ax
+  mov %ax, %ds
+  mov %ax, %es
+  mov %ax, %fs
+  mov %ax, %gs
+
   pusha
   pushl %ds
   pushl %es

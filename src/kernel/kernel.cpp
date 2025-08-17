@@ -1,6 +1,7 @@
 #include "types.h"
 #include "gdt.h"
 #include "interrupts.h"
+#include "keyboard.h"
 
 typedef void (*constructor)();
 
@@ -56,7 +57,12 @@ extern "C" void kernelMain(void* multiboot_structure, uint32_t magicnumber)
     global_descriptor_table gdt;
     interrupt_manager interrupts(&gdt);
 
+    keyboard_driver keyboard(&interrupts);
+
     interrupts.activate();
 
-    for (;;);
+    for (;;)
+    {
+      asm volatile("hlt");
+    }
 }
